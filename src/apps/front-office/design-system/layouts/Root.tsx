@@ -1,4 +1,5 @@
 import { AppShell, MantineProvider } from "@mantine/core";
+import { userPrefersDarkMode } from "@mongez/dom";
 import { BasicComponentProps } from "../../utils/types";
 
 /**
@@ -10,7 +11,11 @@ import { BasicComponentProps } from "../../utils/types";
 export default function Root({ children }: BasicComponentProps) {
   return (
     <>
-      <MantineProvider withGlobalStyles withNormalizeCSS>
+      <MantineProvider
+        theme={{
+          colorScheme: userPrefersDarkMode() ? "dark" : "light",
+        }}
+        withGlobalStyles withNormalizeCSS>
         <AppShell>{children}</AppShell>
       </MantineProvider>
     </>
